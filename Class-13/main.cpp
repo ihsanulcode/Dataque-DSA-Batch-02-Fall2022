@@ -20,22 +20,22 @@ void checkFull(bool b)
 template <class T>
 void Print(QueType<T> Q)
 {
-    QueType<T> temp;
-    while (!Q.IsEmpty())
+    QueType<T> temp = Q;
+    while (!temp.IsEmpty())
     {
         int data;
-        Q.Dequeue(data);
-        temp.Enqueue(data);
+        temp.Dequeue(data);
         cout << data << " ";
     }
     cout << endl;
-
-    while (!temp.IsEmpty())
-    {
-        int n;
-        temp.Dequeue(n);
-        Q.Enqueue(n);
-    }
+    // Q.MakeEmpty();
+    Q = temp;
+    // while (!temp.IsEmpty())
+    // {
+    //     int n;
+    //     temp.Dequeue(n);
+    //     Q.Enqueue(n);
+    // }
 }
 int main()
 {
@@ -51,23 +51,24 @@ int main()
     q.Enqueue(6);
 
     Print(q);
+    Print(q);
+    // checkFull(q.IsFull());
 
-    checkFull(q.IsFull());
+    // if (!q.IsFull())
+    //     q.Enqueue(8);
+    // else
+    //     cout << "Queue Overflow" << endl;
 
-    if (!q.IsFull())
-        q.Enqueue(8);
-    else
-        cout << "Queue Overflow" << endl;
+    // int d;
+    // q.Dequeue(d);
+    // q.Dequeue(d);
+    // checkFull(q.IsFull());
 
-    int d;
-    q.Dequeue(d);
-    q.Dequeue(d);
-    checkFull(q.IsFull());
-
-    if (!q.IsEmpty())
-        q.Dequeue(d);
-    else
-        cout << "Queue Underflow" << endl;
+    // if (!q.IsEmpty()){
+    //     q.Dequeue(d);
+    //     cout << d << endl;
+    // }else
+    //     cout << "Queue Underflow" << endl;
 
     // Print(q);
 }
