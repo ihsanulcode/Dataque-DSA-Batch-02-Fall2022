@@ -1,2 +1,0 @@
-Q.MakeEmpty();
-    // Q = temp;
