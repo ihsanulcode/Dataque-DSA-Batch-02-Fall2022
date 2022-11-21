@@ -3,81 +3,65 @@
 #include "unsortedtype.cpp"
 using namespace std;
 
-int main(){
-    //declaring three lists
-    UnsortedType<int> list1;
-    UnsortedType<int> list2;
-    UnsortedType<int> merged;
+int main()
+{
+    //declaring three list
+    UnsortedType<int> a; //list 1
+    UnsortedType<int> b; //list 2
+    UnsortedType<int> c; //list 3 for merging list 1 & list 2
 
-    //getting n size
-    int n, v;
-    cin >> n;
+    int n1;  //getting size for list a
+    cout << "Enter size for the first list: ";
+    cin >> n1;
 
-    //getting n items
-    for(int i=0; i<n; i++){
-        cin >> v;
-        list1.InsertItem(v);
+    int t1;   //getting elements in list a
+    cout << "Enter " << n1 << " elements: " << endl;
+    for(int i=0;i<n1;i++){
+        cin >> t1;
+        a.InsertItem(t1);
+        c.InsertItem(t1);
     }
 
-    cin >> n; //repeat for 2nd list
-    for(int i=0; i<n; i++){
-        cin >> v;
-        list2.InsertItem(v);
+
+
+    int n2;  //getting size for list b
+    cout << "\nEnter size for the second list: ";
+    cin >> n2;
+
+    int t2;   //getting elements in list b
+    cout << "Enter " << n2 << " elements: " << endl;
+    for(int i=0;i<n2;i++){
+        cin >> t2;
+        a.InsertItem(t2);
+        c.InsertItem(t2);
     }
 
-    //calculation
-    int value1, value2, index1=list1.LengthIs(), index2=list2.LengthIs();
-    list1.GetNextItem(value1);
-    list2.GetNextItem(value2);
 
-    while(index1>0 && index2>0){
-        if(value1>value2){
-            merged.InsertItem(value1);
-            index1--;
-            if(index1>0)
-                list1.GetNextItem(value1);
+
+    int size = n1+n2;
+    int arr[size];
+    cout << "Merged: ";
+    for(int i=0;i<size;i++){
+        int ans;
+        c.GetNextItem(ans);
+        arr[i] = ans;
+    }
+
+    int temp = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 1 + i; j < size; j++) {
+            if (arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
         }
-        else if(value2>value1){
-            merged.InsertItem(value2);
-            index2--;
-            if(index2>0)
-                list2.GetNextItem(value2);
-        }
-        else{
-            merged.InsertItem(value1);
-            merged.InsertItem(value2);
-            index1--;
-            index2--;
-            if(index1>0)
-                list1.GetNextItem(value1);
-            if(index2>0)
-                list2.GetNextItem(value2);
-        }
     }
 
-    while(index1>0){
-        merged.InsertItem(value1);
-        index1--;
-        if(index1>0)
-            list1.GetNextItem(value1);
-    }
-
-    while(index2>0){
-        merged.InsertItem(value2);
-        index2--;
-        if(index2>0)
-            list2.GetNextItem(value2);
-    }
-
-    //output
-    cout << "\nOutput: " << endl;
-    int value_merged, index_merged = merged.LengthIs()-1;
-    while(index_merged>=0){
-        merged.GetNextItem(value_merged);
-        cout << value_merged << ' ';
-        index_merged--;
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
     }
     cout << endl;
 
-    return 0;
+
 }
