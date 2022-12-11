@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1670764795 source:c:\users\asif\desktop\codeblocks\queue-array\queue.cpp
+	"queue.h"
+	<iostream>
+
+1670762966 c:\users\asif\desktop\codeblocks\queue-array\queue.h
+
+1670764426 source:c:\users\asif\desktop\codeblocks\queue-array\main.cpp
+	<iostream>
+	"queue.cpp"
+
+1670764496 c:\users\asif\desktop\codeblocks\queue-array\queue.cpp
+	"queue.h"
+	<iostream>
+
